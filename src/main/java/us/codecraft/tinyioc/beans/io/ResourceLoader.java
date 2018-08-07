@@ -1,14 +1,15 @@
 package us.codecraft.tinyioc.beans.io;
 
-import java.net.URL;
-
 /**
- * @author yihua.huang@dianping.com
+ * 资源加载器接口
  */
-public class ResourceLoader {
+public interface ResourceLoader {
 
-    public Resource getResource(String location){
-        URL resource = this.getClass().getClassLoader().getResource(location);
-        return new UrlResource(resource);
-    }
+    /**
+     * 根据简单路径名（URL）构造一个Resource资源。
+     *
+     * @param location
+     * @return
+     */
+    Resource getResource(String location);
 }

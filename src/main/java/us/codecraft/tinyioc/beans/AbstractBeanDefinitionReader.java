@@ -7,12 +7,15 @@ import java.util.Map;
 
 /**
  * 从配置中读取BeanDefinition
- * 
+ *
  * @author yihua.huang@dianping.com
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
-    private Map<String,BeanDefinition> registry;
+    /**
+     *
+     */
+    private Map<String, BeanDefinition> registry;
 
     private ResourceLoader resourceLoader;
 
@@ -25,6 +28,11 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
         return registry;
     }
 
+    /**
+     * 让子类使用resourceLoader和registry的getter
+     *
+     * @return
+     */
     public ResourceLoader getResourceLoader() {
         return resourceLoader;
     }

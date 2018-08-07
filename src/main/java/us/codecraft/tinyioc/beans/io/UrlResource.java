@@ -6,6 +6,8 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
+ * URL资源实体
+ *
  * @author yihua.huang@dianping.com
  */
 public class UrlResource implements Resource {
@@ -16,8 +18,14 @@ public class UrlResource implements Resource {
         this.url = url;
     }
 
+    /**
+     * 从外部资源URL获得数据的输入流。
+     *
+     * @return
+     * @throws IOException
+     */
     @Override
-    public InputStream getInputStream() throws IOException{
+    public InputStream getInputStream() throws IOException {
         URLConnection urlConnection = url.openConnection();
         urlConnection.connect();
         return urlConnection.getInputStream();

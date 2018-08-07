@@ -1,27 +1,39 @@
 package us.codecraft.tinyioc.beans;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 包装一个对象所有的PropertyValue。<br/>
  * 为什么封装而不是直接用List?因为可以封装一些操作。
+ *
  * @author yihua.huang@dianping.com
  */
 public class PropertyValues {
 
-	private final List<PropertyValue> propertyValueList = new ArrayList<PropertyValue>();
+    /**
+     * 为什么不用Map呢
+     */
+    private final List<PropertyValue> propertyValueList = new ArrayList<PropertyValue>();
 
-	public PropertyValues() {
-	}
+    private final Set<String> propertyNameSet = new HashSet<String>();
 
-	public void addPropertyValue(PropertyValue pv) {
-        //TODO:这里可以对于重复propertyName进行判断，直接用list没法做到
-		this.propertyValueList.add(pv);
-	}
+    public PropertyValues() {
+    }
 
-	public List<PropertyValue> getPropertyValues() {
-		return this.propertyValueList;
-	}
+    public void addPropertyValue(PropertyValue pv) {
+        if (propertyNameSet.contains(pv.getName())) {
+            throw new RuntimeException("Duplicated property name:" + pv.getName());
+        } else {
+            propertyNameSet.add(pv.getName());
+            this.propertyValueList.add(pv);
+        }
+    }
+
+    public List<PropertyValue> getPropertyValues() {
+        return this.propertyValueList;
+    }
 
 }
